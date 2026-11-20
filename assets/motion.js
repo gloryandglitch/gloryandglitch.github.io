@@ -1,4 +1,4 @@
-/* Rise & Ruin v2 motion engine (Vista). Vanilla, no dependencies. Respects prefers-reduced-motion. */
+/* Glory & Glitch v2 motion engine (Vista). Vanilla, no dependencies. Respects prefers-reduced-motion. */
 (function () {
   var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
