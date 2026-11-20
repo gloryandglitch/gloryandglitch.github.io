@@ -84,17 +84,58 @@ body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;back
 .pixel-stage{position:relative;width:min(300px,30vw);aspect-ratio:1;justify-self:center}
 .pixel-btn{appearance:none;background:none;border:0;padding:0;cursor:pointer;width:100%;height:100%;display:block}
 .pixel-btn svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 26px 40px rgba(0,0,0,.55))}
-.pixel-btn .bodyg{transform-origin:50% 100%;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.pixel-btn:focus-visible{outline-offset:8px;border-radius:14px}
+.pixel-btn svg *{transform-box:fill-box}
+.pixel-btn .bodyg{transform-origin:50% 100%}
+.pixel-btn .inner{transform-origin:50% 100%}
 .pixel-btn:active .bodyg{transform:scale(1.06,.92)}
 .pixel-stage.jump .bodyg{animation:hop .5s cubic-bezier(.3,.7,.4,1)}
 @keyframes hop{40%{transform:translateY(-18%) scale(.96,1.05)}70%{transform:translateY(0) scale(1.06,.94)}}
-.pixel-stage .crown{transition:transform .3s,opacity .3s}
-.pixel-stage:not(.glory) .crown{opacity:0;transform:translateY(20px)}
-.pixel-stage .split{opacity:0}
-.pixel-stage.broken .split{opacity:1}
+/* faces */
+.face-top,.face-bot,.split{opacity:0}
+.pixel-stage.broken .face-whole{opacity:0}
+.pixel-stage.broken .face-top,.pixel-stage.broken .face-bot,.pixel-stage.broken .split{opacity:1}
 .pixel-stage.broken .face-top{transform:translateX(-10px)}
 .pixel-stage.broken .face-bot{transform:translateX(12px)}
-.face-top,.face-bot{transition:transform .2s steps(2)}
+.split{transform-origin:0 50%}
+/* eyes */
+.eyes-happy{opacity:0}
+.pixel-stage.glory .eyes-happy{opacity:1}
+.pixel-stage.glory .eyes-sq{opacity:0}
+.eyes-sq,.eyes-happy{transform-origin:50% 50%}
+/* crown */
+.crown{opacity:0;transform-origin:50% 100%}
+.pixel-stage.glory .crown{opacity:1;animation:wob 3.2s ease-in-out infinite}
+@keyframes wob{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+/* entering GLORY: crown drops, sparks fly */
+.pixel-stage.in-glory .crown{animation:crownDrop .75s cubic-bezier(.3,1.6,.5,1)}
+@keyframes crownDrop{0%{transform:translateY(-120%) rotate(-25deg);opacity:0}55%{transform:translateY(8%) rotate(6deg);opacity:1}100%{transform:none;opacity:1}}
+.pixel-stage.in-glory .eyes-happy{animation:pop .4s .15s cubic-bezier(.3,1.8,.5,1) both}
+@keyframes pop{from{transform:scale(.2)}to{transform:none}}
+.spark{position:absolute;left:50%;top:48%;width:9px;height:9px;background:var(--gold);pointer-events:none;animation:spark .8s cubic-bezier(.2,.8,.3,1) forwards}
+.spark.c{background:var(--cyan)}.spark.w{background:#fff}
+@keyframes spark{from{transform:translate(-50%,-50%) scale(1);opacity:1}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.2) rotate(180deg);opacity:0}}
+/* entering GLITCH: shake + colour split, bar slices in */
+.pixel-stage.in-broken svg{animation:rgb .55s steps(5)}
+@keyframes rgb{0%,100%{filter:drop-shadow(0 26px 40px rgba(0,0,0,.55))}20%{filter:drop-shadow(-7px 0 #00E5FF) drop-shadow(7px 0 #FF2E88)}60%{filter:drop-shadow(6px 2px #00E5FF) drop-shadow(-6px -2px #FF2E88)}}
+.pixel-stage.in-broken .bodyg{animation:shake .55s steps(6)}
+@keyframes shake{20%{transform:translate(-6px,2px) skewX(6deg)}40%{transform:translate(7px,-3px)}60%{transform:translate(-4px,1px) skewX(-5deg)}80%{transform:translate(3px,0)}}
+.pixel-stage.in-broken .split{animation:slice .35s steps(4)}
+@keyframes slice{from{transform:scaleX(0)}to{transform:none}}
+/* idle GLITCH: random-looking jitter and flicker */
+.pixel-stage.broken .face-top{animation:jt 2.6s steps(1) infinite}
+.pixel-stage.broken .face-bot{animation:jb 2.6s steps(1) infinite}
+@keyframes jt{0%,86%,100%{transform:translateX(-10px)}88%{transform:translateX(-18px)}92%{transform:translateX(-4px)}}
+@keyframes jb{0%,86%,100%{transform:translateX(12px)}88%{transform:translateX(20px)}93%{transform:translateX(6px)}}
+.pixel-stage.broken .eyes-sq{animation:flick 1.9s steps(1) infinite}
+@keyframes flick{0%,82%,100%{opacity:1}84%{opacity:.15}88%{opacity:1}90%{opacity:.3}}
+/* entering CALM: squash and blink; idle CALM: breathing and blinking */
+.pixel-stage.in-calm .eyes-sq{animation:blink .4s}
+@keyframes blink{40%{transform:scaleY(.1)}}
+.pixel-stage.calm .inner{animation:breathe 3.6s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:none}50%{transform:scale(1.025,.975)}}
+.pixel-stage.calm:not(.in-calm) .eyes-sq{animation:blinkIdle 4.2s infinite}
+@keyframes blinkIdle{0%,93%,100%{transform:none}96%{transform:scaleY(.1)}}
 .mood{position:absolute;left:50%;bottom:-38px;transform:translateX(-50%);font:400 12px var(--px);color:var(--muted);white-space:nowrap}
 .mood b{color:var(--cyan);font-weight:400}
 @media(max-width:860px){
@@ -262,14 +303,18 @@ dialog.player::backdrop{background:rgba(5,4,8,.88);backdrop-filter:blur(4px)}
 <div class="pixel-stage glory" id="pixel">
 <button class="pixel-btn" type="button" aria-label="Pixel, our mascot. Press to change his mood" id="pixelBtn">
 <svg viewBox="0 0 200 200" aria-hidden="true">
-<g class="bodyg">
+<g class="bodyg"><g class="inner">
 <g class="crown"><path d="M62 78 L70 46 L86 64 L100 38 L114 64 L130 46 L138 78 Z" fill="#fff"/></g>
 <rect x="56" y="74" width="104" height="104" rx="16" fill="#00E5FF"/>
+<rect class="face-whole" x="44" y="76" width="112" height="94" rx="16" fill="#F2B630"/>
 <g class="face-top"><path d="M60 76 h80 a16 16 0 0 1 16 16 v34 H44 v-34 a16 16 0 0 1 16 -16z" fill="#F2B630"/></g>
 <g class="face-bot"><path d="M44 126 h112 v28 a16 16 0 0 1 -16 16 H60 a16 16 0 0 1 -16 -16z" fill="#F2B630"/></g>
 <rect class="split" x="36" y="124" width="128" height="5" fill="#FF2E88"/>
-<g id="eyes"><rect id="eyeL" x="72" y="108" width="14" height="20" rx="4" fill="#0B0A10"/><rect id="eyeR" x="114" y="108" width="14" height="20" rx="4" fill="#0B0A10"/></g>
+<g id="eyes">
+<g class="eyes-sq"><rect x="72" y="108" width="14" height="20" rx="4" fill="#0B0A10"/><rect x="114" y="108" width="14" height="20" rx="4" fill="#0B0A10"/></g>
+<g class="eyes-happy" fill="none" stroke="#0B0A10" stroke-width="6" stroke-linecap="round"><path d="M70 124 q9 -16 18 0"/><path d="M112 124 q9 -16 18 0"/></g>
 </g>
+</g></g>
 </svg>
 </button>
 <div class="mood" aria-live="polite">MOOD <b id="moodTxt">GLORY</b> · TAP TO SWITCH</div>
@@ -478,20 +523,30 @@ if (location.hash==='#newsletter') tab(0);
 
 /* ---- Pixel ---- */
 const stage = document.getElementById('pixel'), moods=['glory','broken','calm'], names={glory:'GLORY',broken:'GLITCH',calm:'CALM'};
-let mi = 0;
+let mi = 0, enterT;
+function sparks(){
+  for (let k=0;k<14;k++){ const sp=document.createElement('span'); const ang=Math.random()*Math.PI*2, d=70+Math.random()*90;
+    sp.className='spark'+(k%3===1?' c':k%5===0?' w':''); sp.style.setProperty('--dx',Math.cos(ang)*d+'px'); sp.style.setProperty('--dy',(Math.sin(ang)*d-30)+'px');
+    sp.style.animationDelay=(Math.random()*.12)+'s'; stage.appendChild(sp); setTimeout(()=>sp.remove(),1100); }
+}
 document.getElementById('pixelBtn').onclick = ()=>{
-  mi=(mi+1)%moods.length; stage.classList.remove('glory','broken'); if (moods[mi]!=='calm') stage.classList.add(moods[mi]);
-  document.getElementById('moodTxt').textContent = names[moods[mi]];
-  if (!RM){ stage.classList.remove('jump'); void stage.offsetWidth; stage.classList.add('jump'); }
-  if (moods[mi]==='broken') glitch();
+  mi=(mi+1)%moods.length; const m=moods[mi];
+  stage.classList.remove('glory','broken','calm','in-glory','in-broken','in-calm'); stage.classList.add(m);
+  document.getElementById('moodTxt').textContent = names[m];
+  if (RM) return;
+  void stage.offsetWidth; stage.classList.add('in-'+m);
+  clearTimeout(enterT); enterT=setTimeout(()=>stage.classList.remove('in-'+m), 900);
+  if (m==='glory') sparks();
+  if (m==='broken') glitch();
+  if (m==='calm'){ stage.classList.remove('jump'); void stage.offsetWidth; stage.classList.add('jump'); }
 };
-const eyes=[document.getElementById('eyeL'),document.getElementById('eyeR')], base=[72,114];
+const eyesG=document.getElementById('eyes');
 if (!RM && matchMedia('(pointer:fine)').matches){
   window.addEventListener('pointermove', e=>{
     const r = stage.getBoundingClientRect(); if (!r.width) return;
     const dx = Math.max(-1,Math.min(1,(e.clientX-(r.left+r.width/2))/(innerWidth/2)));
     const dy = Math.max(-1,Math.min(1,(e.clientY-(r.top+r.height/2))/(innerHeight/2)));
-    eyes.forEach((el,k)=>{ el.setAttribute('x', base[k]+dx*8); el.setAttribute('y', 108+dy*6); });
+    eyesG.setAttribute('transform','translate('+(dx*8).toFixed(1)+' '+(dy*6).toFixed(1)+')');
   }, {passive:true});
 }
 
