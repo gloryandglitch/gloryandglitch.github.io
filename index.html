@@ -198,6 +198,13 @@ section{padding:84px 0}
 .board .src{margin:16px 8px 0;font-size:13px;color:var(--muted)}
 .typing .row{opacity:0}
 .typing .row.on{opacity:1;animation:pop .25s steps(3)}
+/* glitch on the board (Chairman Nov 20): same RGB slice as the hero wordmark */
+.glt{position:relative;display:inline-block}
+.glt:before,.glt:after{content:attr(data-t);position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0;text-shadow:none}
+.glt:before{color:var(--cyan)}.glt:after{color:var(--mag)}
+.glt.go{animation:jit .42s steps(2) 1}
+.glt.go:before{opacity:.95;animation:sliceA .42s steps(3) 1}
+.glt.go:after{opacity:.95;animation:sliceB .42s steps(3) 1}
 @keyframes pop{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0)}}
 @media(max-width:600px){.row{grid-template-columns:30px 1fr auto;gap:10px}.row .tg{display:none}}
 
@@ -288,6 +295,10 @@ dialog.player::backdrop{background:rgba(5,4,8,.88);backdrop-filter:blur(4px)}
   .pixel-stage.in-broken .face-top{animation:slideT .3s steps(3)!important}
   .pixel-stage.in-broken .face-bot{animation:slideB .3s steps(3)!important}
   .pixel-stage.in-calm .eyes-sq{animation:blink .4s!important}
+  /* High Scores glitch: a short burst when the board comes into view or a row is pointed at (no loop) */
+  .glt.go{animation:jit .42s steps(2) 1!important}
+  .glt.go:before{animation:sliceA .42s steps(3) 1!important}
+  .glt.go:after{animation:sliceB .42s steps(3) 1!important}
 }
 @keyframes slideT{from{transform:none}to{transform:translateX(-10px)}}
 @keyframes slideB{from{transform:none}to{transform:translateX(12px)}}
@@ -356,7 +367,7 @@ dialog.player::backdrop{background:rgba(5,4,8,.88);backdrop-filter:blur(4px)}
 <section class="scores" aria-labelledby="hs">
 <div class="wrap">
 <div class="board" id="board">
-<h2 id="hs">HIGH SCORES</h2>
+<h2 id="hs"><span class="glt" data-t="HIGH SCORES">HIGH SCORES</span></h2>
 <p class="sub">Record numbers from our stories. Tap a row to watch the story behind it.</p>
 <ol id="scoreList"></ol>
 <p class="src">Every number is quoted from the sources listed in that video's description.</p>
@@ -518,14 +529,25 @@ list.addEventListener('keydown', e=>{
 const sl = document.getElementById('scoreList');
 sl.innerHTML = SCORES.map((s,i)=>{
   const href = 'https://'+(s.v?'www.youtube.com/shorts/':'youtu.be/')+s.id;
-  return '<li><a class="row" href="'+href+'" data-play="'+s.id+'" data-vert="'+s.v+'"><span class="rk">'+String(i+1).padStart(2,'0')+'</span><span class="tg">'+s.tg+'</span><span class="wh">'+esc(s.w)+'<small>'+esc(s.sm)+'</small></span><span class="sc">'+s.sc+'</span></a></li>';
+  return '<li><a class="row" href="'+href+'" data-play="'+s.id+'" data-vert="'+s.v+'"><span class="rk">'+String(i+1).padStart(2,'0')+'</span><span class="tg">'+s.tg+'</span><span class="wh">'+esc(s.w)+'<small>'+esc(s.sm)+'</small></span><span class="sc glt" data-t="'+s.sc+'">'+s.sc+'</span></a></li>';
 }).join('');
 const board = document.getElementById('board');
-if (!RM && 'IntersectionObserver' in window){
-  board.classList.add('typing');
-  const rows = [...board.querySelectorAll('.row')];
-  const io = new IntersectionObserver(en=>{ if (en[0].isIntersecting){ io.disconnect(); rows.forEach((r,i)=>setTimeout(()=>r.classList.add('on'), 90*i)); } }, {threshold:.25});
+const glt = el => { if (!el) return; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go'); setTimeout(()=>el.classList.remove('go'), 390); };
+const hsTitle = board.querySelector('h2 .glt');
+const rowsAll = [...board.querySelectorAll('.row')];
+rowsAll.forEach(r=>{ const f=()=>glt(r.querySelector('.sc')); r.addEventListener('mouseenter', f); r.addEventListener('focus', f); r.addEventListener('touchstart', f, {passive:true}); });
+if ('IntersectionObserver' in window){
+  if (!RM) board.classList.add('typing');
+  let seen = false, vis = false;
+  const io = new IntersectionObserver(en=>{
+    vis = en[0].isIntersecting;
+    if (vis && !seen){ seen = true;
+      if (!RM) rowsAll.forEach((r,i)=>setTimeout(()=>{ r.classList.add('on'); glt(r.querySelector('.sc')); }, 90*i));
+      setTimeout(()=>glt(hsTitle), RM ? 200 : 90*rowsAll.length + 150);
+    }
+  }, {threshold:.25});
   io.observe(board);
+  if (!RM) setInterval(()=>{ if (vis && !document.hidden){ glt(hsTitle); const r = rowsAll[Math.floor(Math.random()*rowsAll.length)]; setTimeout(()=>glt(r && r.querySelector('.sc')), 180); } }, 6500);
 }
 
 /* ---- quick plays ---- */
