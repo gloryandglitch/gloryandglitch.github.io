@@ -7,8 +7,8 @@
 <meta name="p:domain_verify" content="ca297d17b9f553155da10028157f7865"/>
 <meta name="description" content="Glory &amp; Glitch tells true, sourced stories from video game history: GTA 6, Xbox, Nintendo, Sega, Atari, PlayStation and the games that made or broke them. Watch on YouTube.">
 <link rel="canonical" href="https://gloryandglitch.github.io/">
-<link rel="icon" type="image/png" href="assets/crown.png">
-<link rel="apple-touch-icon" href="assets/gg-logo-tile.png">
+<link rel="icon" type="image/png" href="/assets/crown.png">
+<link rel="apple-touch-icon" href="/assets/gg-logo-tile.png">
 <meta name="theme-color" content="#0B0A10">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Glory &amp; Glitch">
@@ -18,134 +18,521 @@
 <meta property="og:url" content="https://gloryandglitch.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Glory & Glitch", "alternateName": "Rise & Ruin", "url": "https://gloryandglitch.github.io/", "logo": "https://gloryandglitch.github.io/assets/gg-logo-tile.png", "description": "True, sourced stories from video game history: how gaming empires rise, fall and glitch.", "sameAs": ["https://www.youtube.com/@gloryandglitch?sub_confirmation=1", "https://www.instagram.com/gloryandglitch", "https://www.tiktok.com/@gloryandglitch", "https://www.facebook.com/gloryandglitch", "https://www.threads.com/@gloryandglitch", "https://bsky.app/profile/gloryandglitch.bsky.social", "https://www.tumblr.com/gloryandglitch", "https://www.linkedin.com/company/gloryandglitch/", "https://www.pinterest.com/gloryandglitch"]}</script>
 <style>
-:root{--ink:#0B0A10;--ink2:#13111B;--ink3:#1B1826;--line:#2A2638;--text:#EDEAF2;--muted:#A9A3B8;--gold:#F2B630;--cyan:#00E5FF;--mag:#FF2E88}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{margin:0;background:var(--ink);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root{
+  --ink:#0B0A10;--panel:#13111B;--panel2:#1B1826;--line:#2A2638;
+  --text:#EDEAF2;--muted:#A9A3B8;--gold:#F2B630;--cyan:#00E5FF;--mag:#FF2E88;
+  --disp:'Russo One',Impact,sans-serif;--ui:'Chakra Petch',system-ui,sans-serif;--px:'Silkscreen',monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--ink);color:var(--text);font:17px/1.6 var(--ui);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}img{max-width:100%;display:block}
-.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
-h1,h2,h3{font-family:'Russo One',Impact,sans-serif;font-weight:400;letter-spacing:.3px;margin:0}
-.ui{font-family:'Chakra Petch',system-ui,sans-serif}
-.top{position:sticky;top:0;z-index:20;background:rgba(11,10,16,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 21px/1 'Russo One',sans-serif}
-.brand img{width:40px;height:40px}.brand b{color:var(--gold);font-weight:400}.brand i{font-style:normal;text-shadow:-2px 0 var(--cyan),2px 0 var(--mag)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--disp);font-weight:400;margin:0;letter-spacing:.2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* scanlines over the whole cabinet, very faint */
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:40;background:rgba(11,10,16,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 20px/1 var(--disp)}
+.brand img{width:36px;height:36px}.brand b{color:var(--gold);font-weight:400}.brand i{font-style:normal;text-shadow:-2px 0 var(--cyan),2px 0 var(--mag)}
 .top nav{display:flex;gap:22px;align-items:center}
-.top nav a{text-decoration:none;color:var(--muted);font:600 15px 'Chakra Petch',sans-serif;letter-spacing:.4px}.top nav a:hover{color:var(--text)}
-.top nav a.btn,.top nav a.btn:hover{color:#120f05}.top nav a.btn{transition:transform .2s,box-shadow .2s}.top nav a.btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(242,182,48,.35)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;background:var(--gold);color:#120f05;font:700 15px 'Chakra Petch',sans-serif;text-decoration:none;letter-spacing:.4px;border:0;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-.top .btn{padding:8px 14px;font-size:14px}
-@media(max-width:760px){.top nav a.hide{display:none}}
-.hero{position:relative;padding:84px 0 64px;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:-20% -10% auto;height:120%;background:radial-gradient(600px 380px at 70% 30%,rgba(242,182,48,.16),transparent 70%),radial-gradient(500px 300px at 15% 70%,rgba(0,229,255,.08),transparent 70%);pointer-events:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
-@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero .px{display:none}}
-.kick{font:700 13px 'Chakra Petch',sans-serif;letter-spacing:3px;color:var(--cyan);text-transform:uppercase}
-.hero h1{font-size:clamp(40px,7vw,76px);line-height:1.02;margin:14px 0 18px}
-.hero h1 .g{color:var(--gold)}.hero h1 .x{position:relative;text-shadow:-3px 0 var(--cyan),3px 0 var(--mag)}
-.hero p.lead{font-size:19px;color:var(--muted);max-width:560px;margin:0 0 28px}
-.cta{display:flex;gap:12px;flex-wrap:wrap}
-.px{justify-self:center;animation:bob 3.2s ease-in-out infinite}.px img{width:260px}
-@keyframes bob{50%{transform:translateY(-12px)}}
-.stats{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}.stats b{display:block;font:400 30px 'Russo One',sans-serif;color:var(--gold)}.stats span{color:var(--muted);font:600 13px 'Chakra Petch',sans-serif;letter-spacing:1px;text-transform:uppercase}
-section{padding:56px 0}
-.sec-h{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
-.sec-h h2{font-size:clamp(28px,4vw,40px)}.sec-h a{color:var(--cyan);font:600 15px 'Chakra Petch',sans-serif;text-decoration:none}
-.eps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-@media(max-width:980px){.eps{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.eps{grid-template-columns:1fr}}
-.ep{text-decoration:none;background:var(--ink2);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s}
-.ep:hover{transform:translateY(-4px);border-color:var(--gold)}
-.ep .th{position:relative;aspect-ratio:16/9;overflow:hidden}.ep .th img{width:100%;height:100%;object-fit:cover}
-.ep .tag{position:absolute;left:10px;top:10px;background:var(--mag);color:#fff;font:700 12px 'Chakra Petch',sans-serif;letter-spacing:1.5px;padding:3px 8px;border-radius:5px}
-.ep .play{position:absolute;right:10px;bottom:10px;width:38px;height:38px;border-radius:50%;background:rgba(11,10,16,.8);display:grid;place-items:center;color:var(--gold);font-size:14px}
-.ep h3{font-size:18px;line-height:1.25;margin:14px 16px 6px}.ep p{margin:0 16px 16px;color:var(--muted);font-size:14.5px}
-.shorts{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-@media(max-width:980px){.shorts{grid-template-columns:repeat(3,1fr)}}@media(max-width:520px){.shorts{grid-template-columns:repeat(2,1fr)}}
-.sh{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;text-decoration:none;border:1px solid var(--line)}
-.sh img{width:100%;height:100%;object-fit:cover;transform:scale(1.35);transition:transform .3s}.sh:hover img{transform:scale(1.42)}
-.sh span{position:absolute;inset:auto 0 0;padding:34px 10px 10px;background:linear-gradient(transparent,rgba(11,10,16,.95));font:600 13.5px/1.3 'Chakra Petch',sans-serif}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:820px){.duo{grid-template-columns:1fr}}
-.card{background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:28px}
-.card h3{font-size:24px;margin:8px 0 10px}.card p{color:var(--muted);margin:0 0 18px}
-.pixel-card{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center}.pixel-card img{width:150px}
-@media(max-width:520px){.pixel-card{grid-template-columns:1fr}}
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}@media(max-width:820px){.rules{grid-template-columns:1fr}}
-.rules .card b{font:400 30px 'Russo One',sans-serif;color:var(--gold)}
-.news{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}@media(max-width:820px){.news{grid-template-columns:1fr}}
-.news form{display:flex;gap:10px;flex-wrap:wrap}.news input{flex:1;min-width:220px;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--ink);color:var(--text);font:16px Inter,sans-serif}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.soc{display:flex;flex-wrap:wrap;gap:10px}.soc a{width:44px;height:44px;border-radius:12px;background:var(--ink3);border:1px solid var(--line);display:grid;place-items:center;transition:border-color .2s}
-.soc a:hover{border-color:var(--cyan)}.soc svg{width:20px;height:20px;fill:var(--text)}
-details{border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font:600 17px 'Chakra Petch',sans-serif}details p{color:var(--muted);margin:10px 0 0}
+.top nav a{text-decoration:none;color:var(--muted);font:600 15px var(--ui)}
+.top nav a:hover{color:var(--text)}
+.top nav a.yt{color:var(--ink);background:var(--gold);padding:8px 14px;border-radius:8px;font-weight:700}
+.top nav a.yt:hover{color:var(--ink);background:#ffc94d}
+@media(max-width:780px){.top nav a.opt{display:none}}
+
+/* ---------- HERO: attract mode ---------- */
+.hero{position:relative;min-height:min(86vh,760px);display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);isolation:isolate}
+#mosaic{position:absolute;inset:0;width:100%;height:100%;z-index:-2;opacity:.3;image-rendering:pixelated}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,10,16,.92) 0%,rgba(11,10,16,.7) 45%,rgba(11,10,16,.25) 80%),linear-gradient(to bottom,rgba(11,10,16,.1),rgba(11,10,16,.9))}
+.hero .wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;width:100%;padding-top:56px;padding-bottom:64px}
+.hud{display:flex;gap:28px;font:400 13px var(--px);color:var(--muted);margin-bottom:26px;flex-wrap:wrap}
+.hud span b{color:var(--gold);font-weight:400}
+.mark{font:400 clamp(58px,11.5vw,150px)/.86 var(--disp);margin:0;position:relative;display:inline-block}
+.mark .l1{display:block;color:var(--gold)}
+.mark .l2{display:block;color:var(--text);position:relative}
+.mark .l2:before,.mark .l2:after{content:attr(data-t);position:absolute;inset:0;pointer-events:none}
+.mark .l2:before{color:var(--cyan);transform:translateX(-4px);mix-blend-mode:screen;opacity:.9;z-index:-1}
+.mark .l2:after{color:var(--mag);transform:translateX(4px);mix-blend-mode:screen;opacity:.9;z-index:-1}
+.mark.glitch .l2{animation:jit .38s steps(2) 1}
+.mark.glitch .l2:before{animation:sliceA .38s steps(3) 1}
+.mark.glitch .l2:after{animation:sliceB .38s steps(3) 1}
+@keyframes jit{30%{transform:translate(3px,-2px)}60%{transform:translate(-4px,1px)}}
+@keyframes sliceA{0%{clip-path:inset(10% 0 60% 0);transform:translate(-14px)}50%{clip-path:inset(55% 0 20% 0);transform:translate(10px)}100%{clip-path:inset(0);transform:translateX(-4px)}}
+@keyframes sliceB{0%{clip-path:inset(65% 0 5% 0);transform:translate(16px)}50%{clip-path:inset(20% 0 55% 0);transform:translate(-12px)}100%{clip-path:inset(0);transform:translateX(4px)}}
+.tag{font:500 clamp(18px,2.1vw,22px)/1.45 var(--ui);color:var(--muted);max-width:520px;margin:26px 0 30px}
+.tag strong{color:var(--text);font-weight:600}
+.start{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.press{appearance:none;border:0;cursor:pointer;background:var(--gold);color:var(--ink);font:400 16px var(--px);padding:16px 22px 15px;border-radius:6px;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--gold),0 10px 30px rgba(242,182,48,.28);display:inline-flex;gap:12px;align-items:center}
+.press:hover{background:#ffc94d}
+.press .blink{animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.ghost{color:var(--text);text-decoration:none;font:600 16px var(--ui);border-bottom:2px solid var(--cyan);padding-bottom:2px}
+.ghost:hover{color:var(--cyan)}
+
+/* Pixel, the playable mascot */
+.pixel-stage{position:relative;width:min(300px,30vw);aspect-ratio:1;justify-self:center}
+.pixel-btn{appearance:none;background:none;border:0;padding:0;cursor:pointer;width:100%;height:100%;display:block}
+.pixel-btn svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 26px 40px rgba(0,0,0,.55))}
+.pixel-btn .bodyg{transform-origin:50% 100%;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.pixel-btn:active .bodyg{transform:scale(1.06,.92)}
+.pixel-stage.jump .bodyg{animation:hop .5s cubic-bezier(.3,.7,.4,1)}
+@keyframes hop{40%{transform:translateY(-18%) scale(.96,1.05)}70%{transform:translateY(0) scale(1.06,.94)}}
+.pixel-stage .crown{transition:transform .3s,opacity .3s}
+.pixel-stage:not(.glory) .crown{opacity:0;transform:translateY(20px)}
+.pixel-stage .split{opacity:0}
+.pixel-stage.broken .split{opacity:1}
+.pixel-stage.broken .face-top{transform:translateX(-10px)}
+.pixel-stage.broken .face-bot{transform:translateX(12px)}
+.face-top,.face-bot{transition:transform .2s steps(2)}
+.mood{position:absolute;left:50%;bottom:-38px;transform:translateX(-50%);font:400 12px var(--px);color:var(--muted);white-space:nowrap}
+.mood b{color:var(--cyan);font-weight:400}
+@media(max-width:860px){
+  .hero{min-height:0}
+  .hero .wrap{grid-template-columns:1fr;padding-top:36px}
+  .pixel-stage{width:150px;position:absolute;right:16px;top:28px}
+  .mood{display:none}
+}
+@media(max-width:520px){.pixel-stage{width:104px;top:20px;right:10px}.hud{gap:14px;font-size:11px;max-width:62%}}
+
+/* sections */
+section{padding:84px 0}
+.head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+.head h2{font-size:clamp(32px,4.4vw,48px);line-height:1.05}
+.head p{margin:8px 0 0;color:var(--muted);max-width:560px}
+.more{color:var(--cyan);text-decoration:none;font:600 16px var(--ui)}
+.more:hover{text-decoration:underline}
+
+/* ---------- LEVEL SELECT ---------- */
+.levels{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:start}
+.screen{position:relative;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 0 0 1px var(--line),0 30px 60px rgba(0,0,0,.45)}
+.screen img{width:100%;height:100%;object-fit:cover;transition:opacity .25s}
+.screen .playbig{position:absolute;inset:0;display:grid;place-items:end;padding:18px;background:transparent;border:0;cursor:pointer;color:var(--text)}
+.screen .playbig span{width:76px;height:76px;border-radius:50%;background:rgba(11,10,16,.7);border:2px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-size:26px;transition:transform .2s}
+.screen .playbig:hover span{transform:scale(1.08)}
+.cap{margin-top:16px}
+.cap h3{font-size:clamp(20px,2.4vw,28px);line-height:1.15}
+.cap p{margin:6px 0 0;color:var(--muted);font-size:16px;max-width:640px}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.lvl{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;width:100%;text-align:left;cursor:pointer;background:transparent;border:1px solid transparent;border-radius:10px;padding:12px 14px;color:var(--muted);transition:background .15s,border-color .15s,color .15s}
+.lvl .n{font:400 13px var(--px);color:var(--muted)}
+.lvl .t{font:600 17px/1.3 var(--ui)}
+.lvl .d{font:400 12px var(--px)}
+.lvl[aria-selected="true"]{background:var(--panel);border-color:var(--gold);color:var(--text)}
+.lvl[aria-selected="true"] .n{color:var(--gold)}
+.lvl[aria-selected="true"] .t:before{content:"\25B6";color:var(--gold);font-size:12px;margin-right:8px;vertical-align:2px}
+.lvl:hover{color:var(--text)}
+.lvl.bonus{margin-top:10px;border:1px dashed var(--line);text-decoration:none}
+.lvl.bonus .n{color:var(--cyan)}
+.keys{margin-top:14px;font:400 11px var(--px);color:var(--muted)}
+.keys kbd{font:inherit;border:1px solid var(--line);border-radius:4px;padding:2px 6px;color:var(--text)}
+@media(max-width:900px){.levels{grid-template-columns:1fr}.keys{display:none}}
+
+/* ---------- HIGH SCORES ---------- */
+.scores{background:radial-gradient(70% 120% at 50% 0%,#1a1530,transparent 70%)}
+.board{max-width:860px;margin:0 auto;border:2px solid var(--line);border-radius:14px;background:rgba(19,17,27,.7);padding:26px 22px 18px}
+.board h2{text-align:center;font:400 clamp(22px,3vw,30px) var(--px);color:var(--gold);letter-spacing:2px;margin-bottom:6px;text-shadow:0 0 18px rgba(242,182,48,.45)}
+.board .sub{text-align:center;color:var(--muted);margin:0 0 20px;font-size:15px}
+.board ol{list-style:none;margin:0;padding:0}
+.row{display:grid;grid-template-columns:44px 64px 1fr auto;gap:14px;align-items:baseline;padding:11px 8px;border-top:1px solid rgba(42,38,56,.7);text-decoration:none}
+.row:hover{background:rgba(242,182,48,.06)}
+.row .rk{font:400 14px var(--px);color:var(--muted)}
+.row .tg{font:400 14px var(--px);color:var(--cyan)}
+.row .wh{font:500 16px/1.35 var(--ui);color:var(--text)}
+.row .wh small{display:block;color:var(--muted);font-size:13px}
+.row .sc{font:400 clamp(16px,2vw,22px) var(--px);color:var(--gold);text-align:right;white-space:nowrap}
+.row:nth-child(1) .rk{color:var(--gold)}
+.board .src{margin:16px 8px 0;font-size:13px;color:var(--muted)}
+.typing .row{opacity:0}
+.typing .row.on{opacity:1;animation:pop .25s steps(3)}
+@keyframes pop{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0)}}
+@media(max-width:600px){.row{grid-template-columns:30px 1fr auto;gap:10px}.row .tg{display:none}}
+
+/* ---------- QUICK PLAYS ---------- */
+.reel{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(170px,200px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 20px 18px;margin:0 -20px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.qp{scroll-snap-align:start;position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;cursor:pointer;padding:0;text-align:left}
+.qp img{width:100%;height:100%;object-fit:cover;transform:scale(1.34);transition:transform .3s}
+.qp:hover img{transform:scale(1.42)}
+.qp:hover{border-color:var(--gold)}
+
+/* ---------- RULES + PIXEL MOODS ---------- */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.rules dl{margin:0;display:grid;gap:22px}
+.rules dt{font:400 22px var(--disp)}
+.rules dd{margin:6px 0 0;color:var(--muted)}
+.moods{display:flex;gap:16px;align-items:end;justify-content:center}
+.moods figure{margin:0;text-align:center}
+.moods img{width:clamp(90px,12vw,150px)}
+.moods figcaption{margin-top:10px;font:400 12px var(--px);color:var(--muted)}
+@media(max-width:860px){.rules{grid-template-columns:1fr;gap:36px}}
+
+/* ---------- PAUSE MENU ---------- */
+.pause{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--ink))}
+.menu{display:grid;grid-template-columns:260px 1fr;gap:40px}
+.menu .tabs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.menu .tabs button{width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:12px 14px;border-radius:8px;font:400 18px var(--px);color:var(--muted)}
+.menu .tabs button[aria-selected="true"]{color:var(--gold);background:rgba(242,182,48,.08)}
+.menu .tabs button[aria-selected="true"]:before{content:"\25B6 ";font-size:12px;vertical-align:2px}
+.menu .tabs button:hover{color:var(--text)}
+.panel{min-height:220px}
+.panel h3{font-size:clamp(24px,3vw,32px);margin-bottom:10px}
+.panel p{color:var(--muted);margin:0 0 20px;max-width:560px}
+.panel[hidden]{display:none}
+.form{display:flex;gap:10px;flex-wrap:wrap;max-width:560px}
+.form input{flex:1;min-width:220px;padding:14px 15px;border-radius:8px;border:1px solid var(--line);background:var(--ink);color:var(--text);font:16px var(--ui)}
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:14px 20px;border-radius:8px;background:var(--gold);color:var(--ink);font:700 16px var(--ui);text-decoration:none}
+.btn:hover{background:#ffc94d}
+.btn.alt{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
+.btn.alt:hover{box-shadow:inset 0 0 0 1px var(--cyan);color:var(--cyan)}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:760px){.menu{grid-template-columns:1fr;gap:18px}.menu .tabs{flex-direction:row;overflow-x:auto}.menu .tabs button{font-size:14px;white-space:nowrap}}
+
+/* follow + faq */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+@media(max-width:820px){.duo{grid-template-columns:1fr;gap:40px}}
+.duo h2{font-size:clamp(28px,3.4vw,36px);margin-bottom:20px}
+.soc{display:flex;flex-wrap:wrap;gap:10px}
+.soc a{width:46px;height:46px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center}
+.soc a:hover{border-color:var(--gold)}
+.soc svg{width:20px;height:20px;fill:var(--text)}
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font:600 17px var(--ui)}
+details p{color:var(--muted);margin:10px 0 0}
 footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}footer nav{display:flex;gap:18px;flex-wrap:wrap}footer a{text-decoration:none}footer a:hover{color:var(--text)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}footer a{text-decoration:none}footer a:hover{color:var(--text)}
+
+/* player overlay */
+dialog.player{border:0;padding:0;background:transparent;max-width:min(1100px,94vw);width:100%;overflow:visible}
+dialog.player.vert{max-width:min(420px,92vw)}
+dialog.player::backdrop{background:rgba(5,4,8,.88);backdrop-filter:blur(4px)}
+.player .fr{position:relative;aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 0 0 2px var(--gold)}
+.player.vert .fr{aspect-ratio:9/16}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player .x{position:absolute;right:0;top:-46px;background:none;border:1px solid var(--line);border-radius:8px;color:var(--text);cursor:pointer;padding:6px 12px;font:400 13px var(--px)}
+.player .x:hover{border-color:var(--gold);color:var(--gold)}
+
+/* boot sequence (one orchestrated moment on load) */
+.boot .mark,.boot .hud,.boot .tag,.boot .start,.boot .pixel-stage{opacity:0}
+.booted .hud{animation:in .3s .1s both}
+.booted .mark{animation:crt .7s .15s both}
+.booted .tag{animation:in .4s .75s both}
+.booted .start{animation:in .4s .9s both}
+.booted .pixel-stage{animation:drop .7s 1s both cubic-bezier(.3,1.5,.5,1)}
+@keyframes crt{0%{opacity:0;transform:scaleY(.02) scaleX(1.2);filter:brightness(3)}40%{opacity:1;transform:scaleY(.02) scaleX(1)}70%{transform:scaleY(1.05)}100%{opacity:1;transform:none;filter:none}}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes drop{from{opacity:0;transform:translateY(-60px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .boot .mark,.boot .hud,.boot .tag,.boot .start,.boot .pixel-stage{opacity:1}
+  .typing .row{opacity:1}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
-<body>
+<body class="boot">
 <header class="top"><div class="wrap">
-<a class="brand" href="/"><img src="assets/crown.png" alt="Glory &amp; Glitch logo" width="40" height="40"><span><b>GLORY</b> <i>&amp; GLITCH</i></span></a>
-<nav><a class="hide" href="#episodes">Episodes</a><a class="hide" href="#shorts">Shorts</a><a class="hide" href="/podcast/">Podcast</a><a class="hide" href="/files/">Archive</a><a class="btn" href="https://www.youtube.com/@gloryandglitch?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a></nav>
+<a class="brand" href="/"><img src="/assets/crown.png" alt="" width="36" height="36"><span><b>GLORY</b> <i>&amp; GLITCH</i></span></a>
+<nav aria-label="Main"><a class="opt" href="#episodes">Episodes</a><a class="opt" href="#shorts">Shorts</a><a class="opt" href="/podcast/">Podcast</a><a class="opt" href="/files/">Archive</a><a class="yt" href="https://www.youtube.com/@gloryandglitch?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a></nav>
 </div></header>
 
 <main>
-<section class="hero"><div class="wrap">
+<section class="hero" aria-label="Glory &amp; Glitch">
+<canvas id="mosaic" aria-hidden="true"></canvas>
+<div class="wrap">
 <div>
-<div class="kick">Gaming history, told true</div>
-<h1>How gaming empires <span class="g">rise</span>, fall and <span class="x">glitch</span>.</h1>
-<p class="lead">True, sourced stories from video game history: the consoles, studios and games that made or broke them. Told fast, with the real numbers.</p>
-<div class="cta"><a class="btn" href="https://www.youtube.com/@gloryandglitch?sub_confirmation=1" target="_blank" rel="noopener">&#9654;&nbsp; Subscribe on YouTube</a><a class="btn ghost" href="#episodes">Watch the latest</a></div>
-<div class="stats"><div><b>100%</b><span>Sourced facts</span></div><div><b>Real</b><span>Hardware photos</span></div><div><b>40+</b><span>Stories told</span></div></div>
+<div class="hud" aria-hidden="true"><span>NOW SHOWING <b id="now">GTA 6</b></span><span>LEVEL <b id="lv">21</b></span></div>
+<h1 class="mark" id="mark"><span class="l1">GLORY</span><span class="l2" data-t="&amp; GLITCH">&amp; GLITCH</span></h1>
+<p class="tag"><strong>True stories of how gaming empires rise, fall and glitch.</strong> The consoles, studios and games that made or broke them, with the real numbers and the sources.</p>
+<div class="start">
+<button class="press" type="button" data-play="l73SnIlEcHY"><span class="blink" aria-hidden="true">&#9654;</span> PRESS START</button>
+<a class="ghost" href="#episodes">Choose a level</a>
 </div>
-<div class="px"><img src="assets/rex-sly-600.png" alt="Pixel, the Glory &amp; Glitch mascot, wearing a crown" width="260" height="260"></div>
-</div></section>
-
-<section id="episodes"><div class="wrap">
-<div class="sec-h"><h2>Latest episodes</h2><a href="https://www.youtube.com/@gloryandglitch/videos" target="_blank" rel="noopener">All episodes &rarr;</a></div>
-<div class="eps"><a class="ep" href="https://youtu.be/l73SnIlEcHY" target="_blank" rel="noopener"><div class="th"><img src="https://i.ytimg.com/vi/l73SnIlEcHY/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="tag">NEW</span><span class="play">&#9654;</span></div><h3>GTA 6: The 13-Year, Billion-Dollar Bet</h3><p>Hacked, leaked, delayed twice. How Rockstar made the most expected game ever.</p></a><a class="ep" href="https://youtu.be/qQ3GQlqQAMc" target="_blank" rel="noopener"><div class="th"><img src="https://i.ytimg.com/vi/qQ3GQlqQAMc/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play">&#9654;</span></div><h3>The History of Xbox</h3><p>Microsoft tried to buy Nintendo. Nintendo laughed. Then came the Xbox.</p></a><a class="ep" href="https://youtu.be/0m3bngkHjUk" target="_blank" rel="noopener"><div class="th"><img src="https://i.ytimg.com/vi/0m3bngkHjUk/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play">&#9654;</span></div><h3>Why Did the Dreamcast Fail?</h3><p>$98 million in a day. Less than two years later, Sega quit consoles.</p></a><a class="ep" href="https://youtu.be/_VbSVRiAzDk" target="_blank" rel="noopener"><div class="th"><img src="https://i.ytimg.com/vi/_VbSVRiAzDk/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play">&#9654;</span></div><h3>Why Did Atari Fail?</h3><p>The company that buried its own games in the desert.</p></a></div>
-</div></section>
-
-<section id="shorts"><div class="wrap">
-<div class="sec-h"><h2>Shorts</h2><a href="https://www.youtube.com/@gloryandglitch/shorts" target="_blank" rel="noopener">See all Shorts &rarr;</a></div>
-<div class="shorts"><a class="sh" href="https://www.youtube.com/shorts/zJepn4i_B3Q" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/zJepn4i_B3Q/hqdefault.jpg" alt="" loading="lazy"><span>Wii at 20: 101 million by ignoring gamers</span></a><a class="sh" href="https://www.youtube.com/shorts/gxVRt90Fvxk" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/gxVRt90Fvxk/hqdefault.jpg" alt="" loading="lazy"><span>Microsoft tried to buy Nintendo</span></a><a class="sh" href="https://www.youtube.com/shorts/hYWr2lVDH-I" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/hYWr2lVDH-I/hqdefault.jpg" alt="" loading="lazy"><span>The Red Ring of Death cost $1.15 billion</span></a><a class="sh" href="https://www.youtube.com/shorts/hsjRAMhQmIU" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/hsjRAMhQmIU/hqdefault.jpg" alt="" loading="lazy"><span>GTA 6 is out. Fans waited 13 years</span></a><a class="sh" href="https://www.youtube.com/shorts/MqylEXMbxZg" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/MqylEXMbxZg/hqdefault.jpg" alt="" loading="lazy"><span>The PS3 cost $599. Sony still lost money</span></a><a class="sh" href="https://www.youtube.com/shorts/q9ZuK7NfMes" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/q9ZuK7NfMes/hqdefault.jpg" alt="" loading="lazy"><span>$98 million in one day. Then Sega quit</span></a></div>
-</div></section>
-
-<section><div class="wrap duo">
-<div class="card pixel-card"><img src="assets/rex-600.png" alt="Pixel, the Glory &amp; Glitch mascot" width="150" height="150"><div><div class="kick">Meet Pixel</div><h3>One gold pixel. Every game starts with one.</h3><p>Pixel pops up in our videos: crowned when an empire wins, split by a glitch when it breaks.</p></div></div>
-<div class="card"><div class="kick">The podcast</div><h3>Listen on the go</h3><p>Every episode as audio, on Spotify and Apple Podcasts.</p><div class="cta"><a class="btn" href="/podcast/">Open the podcast</a><a class="btn ghost" href="https://open.spotify.com/show/5EtW21URHxPjKVuXmQ3ueC" target="_blank" rel="noopener">Spotify</a><a class="btn ghost" href="https://podcasts.apple.com/podcast/id6829391324" target="_blank" rel="noopener">Apple</a></div></div>
-</div></section>
-
-<section id="about"><div class="wrap">
-<div class="sec-h"><h2>How we make them</h2><a href="/standards.html">Editorial standards &rarr;</a></div>
-<div class="rules">
-<div class="card"><b>01</b><h3>Sourced, not guessed</h3><p>Every number and quote comes from published reporting, company figures or official records, listed in each video's description.</p></div>
-<div class="card"><b>02</b><h3>Fast and clear</h3><p>The rise, the turning point, the glitch. Real photos of the real hardware, our own charts, no filler.</p></div>
-<div class="card"><b>03</b><h3>Honest about AI</h3><p>Our narration uses an AI voice. Every script is written and fact-checked by us, and every video is labelled.</p></div>
 </div>
-</div></section>
+<div class="pixel-stage glory" id="pixel">
+<button class="pixel-btn" type="button" aria-label="Pixel, our mascot. Press to change his mood" id="pixelBtn">
+<svg viewBox="0 0 200 200" aria-hidden="true">
+<g class="bodyg">
+<g class="crown"><path d="M62 78 L70 46 L86 64 L100 38 L114 64 L130 46 L138 78 Z" fill="#fff"/></g>
+<rect x="56" y="74" width="104" height="104" rx="16" fill="#00E5FF"/>
+<g class="face-top"><path d="M60 76 h80 a16 16 0 0 1 16 16 v34 H44 v-34 a16 16 0 0 1 16 -16z" fill="#F2B630"/></g>
+<g class="face-bot"><path d="M44 126 h112 v28 a16 16 0 0 1 -16 16 H60 a16 16 0 0 1 -16 -16z" fill="#F2B630"/></g>
+<rect class="split" x="36" y="124" width="128" height="5" fill="#FF2E88"/>
+<g id="eyes"><rect id="eyeL" x="72" y="108" width="14" height="20" rx="4" fill="#0B0A10"/><rect id="eyeR" x="114" y="108" width="14" height="20" rx="4" fill="#0B0A10"/></g>
+</g>
+</svg>
+</button>
+<div class="mood" aria-live="polite">MOOD <b id="moodTxt">GLORY</b> · TAP TO SWITCH</div>
+</div>
+</div>
+</section>
 
-<section><div class="wrap duo">
-<div class="card"><div class="kick">The archive</div><h3>Business Empire Files</h3><p>Before we went all in on gaming, we told the stories of famous business collapses: Nokia, Kodak, Enron, Pan Am and more. They are all still here.</p><a class="btn ghost" href="/files/">Open the archive</a></div>
-<div class="card" id="newsletter"><div class="kick">Free newsletter</div><h3>Never miss a story</h3><p>One email when a new episode drops. No spam, unsubscribe anytime.</p>
-<form class="news-form" action="https://app.kit.com/forms/10124925/subscriptions" method="post" style="display:flex;gap:10px;flex-wrap:wrap"><label class="sr" for="email">Email address</label><input id="email" type="email" name="email_address" placeholder="Your email address" autocomplete="email" required style="flex:1;min-width:200px;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:var(--ink);color:var(--text);font:16px Inter,sans-serif"><button class="btn" type="submit">Subscribe</button></form></div>
-</div></section>
+<section id="episodes">
+<div class="wrap">
+<div class="head"><div><h2>Choose your level</h2><p>Full episodes, about five minutes each. Pick one and it plays right here.</p></div><a class="more" href="https://www.youtube.com/@gloryandglitch/videos" target="_blank" rel="noopener">All videos on YouTube</a></div>
+<div class="levels">
+<div><div class="screen">
+<img id="scrImg" src="https://i.ytimg.com/vi/l73SnIlEcHY/maxresdefault.jpg" alt="" width="1280" height="720">
+<button class="playbig" type="button" id="scrPlay" data-play="l73SnIlEcHY" aria-label="Play GTA 6: The 13-Year, Billion-Dollar Bet"><span aria-hidden="true">&#9654;</span></button>
+</div>
+<div class="cap"><h3 id="scrT">GTA 6: The 13-Year, Billion-Dollar Bet</h3><p id="scrD">Hacked, leaked and delayed twice. Thirteen years after GTA V, can GTA VI beat $1 billion in three days?</p></div>
+</div>
+<div>
+<ul class="list" role="listbox" aria-label="Episodes" id="lvlList"></ul>
+<a class="lvl bonus" href="/files/"><span class="n">BONUS</span><span class="t">Business Empire Files: Nokia, Kodak, Enron, Pan Am and more</span><span class="d" aria-hidden="true">14 EP</span></a>
+<p class="keys" aria-hidden="true"><kbd>&uarr;</kbd> <kbd>&darr;</kbd> to choose, <kbd>Enter</kbd> to play</p>
+</div>
+</div>
+</div>
+</section>
 
-<section><div class="wrap duo">
-<div><div class="sec-h"><h2>Follow along</h2></div><div class="soc"><a href="https://www.youtube.com/@gloryandglitch?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"/></svg></a><a href="https://www.instagram.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3 0-4.1.1C3.6 2.3 2.3 3.6 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.2 4.3 1.5 5.6 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c4.3-.2 5.6-1.5 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.2-4.3-1.5-5.6-5.8-5.8C15 2 14.7 2 12 2z"/></svg></a><a href="https://www.tiktok.com/@gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on TikTok" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.7a8 8 0 0 0 4.4 1.3V6.7A4.4 4.4 0 0 1 16.6 2z"/></svg></a><a href="https://www.facebook.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9H17l.5-4h-4V8.9c0-.6.3-.9.5-.9z"/></svg></a><a href="https://www.threads.com/@gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 22c-5.6 0-9.2-3.6-9.2-10S6.6 2 12.2 2c4.3 0 7.4 2.2 8.5 6l-2.5.7c-.8-2.8-3-4.3-6-4.3-4.1 0-6.6 2.8-6.6 7.6s2.5 7.6 6.6 7.6c3 0 5.4-1.6 5.4-4 0-1.4-.8-2.4-2.1-2.9-.3 2.6-1.9 4-4.4 4-2.3 0-3.9-1.3-3.9-3.3 0-2.2 1.9-3.5 4.7-3.5.6 0 1.1 0 1.6.1-.2-1.2-.9-1.8-2.1-1.8-.9 0-1.6.3-2.1.9L7.7 7.9c.9-1 2.2-1.6 3.8-1.6 2.5 0 4 1.5 4.3 4.2 2.4.8 3.9 2.6 3.9 5.1 0 3.8-3.4 6.4-7.5 6.4zm.1-8.4c-1.5 0-2.3.5-2.3 1.4 0 .8.7 1.3 1.7 1.3 1.4 0 2.2-.9 2.3-2.6-.5-.1-1.1-.1-1.7-.1z"/></svg></a><a href="https://bsky.app/profile/gloryandglitch.bsky.social" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Bluesky" title="Bluesky"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.6C7.9 5.6 10.8 9.7 12 12c1.2-2.3 4.1-6.4 6.8-8.4 2-1.4 5.2-2.5 5.2 1 0 .7-.4 5.9-.7 6.7-.9 3-4 3.8-6.7 3.3 4.8.8 6 3.5 3.4 6.2-5 5.1-7.1-1.3-7.7-2.9l-.3-.6-.3.6c-.6 1.6-2.7 8-7.7 2.9-2.6-2.7-1.4-5.4 3.4-6.2-2.7.5-5.8-.3-6.7-3.3C.4 10.5 0 5.3 0 4.6c0-3.5 3.2-2.4 5.2-1z"/></svg></a><a href="https://www.tumblr.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Tumblr" title="Tumblr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.6 22c-3.3 0-5.5-1.7-5.5-5.6V10H6.4V6.8c3-1 4.3-3.6 4.5-5.8h3.2v5.1h3.7V10h-3.7v5.9c0 1.6.8 2.1 2.1 2.1h1.9V22z"/></svg></a><a href="https://www.linkedin.com/company/gloryandglitch/" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a><a href="https://www.pinterest.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Pinterest" title="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2 1 .5 1.8 1.5 1.8 1.8 0 3.1-1.9 3.1-4.6 0-2.4-1.7-4.1-4.2-4.1-2.9 0-4.6 2.2-4.6 4.4 0 .9.3 1.8.8 2.3.1.1.1.2.1.3l-.3 1.2c0 .2-.2.2-.4.1-1.3-.6-2.1-2.5-2.1-4 0-3.3 2.4-6.3 6.9-6.3 3.6 0 6.4 2.6 6.4 6 0 3.6-2.3 6.5-5.4 6.5-1.1 0-2.1-.6-2.4-1.2l-.7 2.5c-.2.9-.9 2.1-1.3 2.8A10 10 0 1 0 12 2z"/></svg></a><a href="https://open.spotify.com/show/5EtW21URHxPjKVuXmQ3ueC" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Spotify" title="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.6.6 0 0 1-.9.2c-2.4-1.5-5.4-1.8-9-1a.6.6 0 1 1-.3-1.2c3.9-.9 7.2-.5 9.9 1.1.3.2.4.6.3.9zm1.2-2.8a.8.8 0 0 1-1.1.3c-2.7-1.7-6.9-2.2-10.2-1.2a.8.8 0 1 1-.4-1.5c3.7-1.1 8.3-.6 11.4 1.3.4.2.5.7.3 1.1zm.1-2.9C14.7 8.8 9.3 8.6 6.2 9.6a.9.9 0 1 1-.5-1.8c3.6-1.1 9.5-.9 13.2 1.3a.9.9 0 0 1-1 1.6z"/></svg></a><a href="https://podcasts.apple.com/podcast/id6829391324" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Apple Podcasts" title="Apple Podcasts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3l.4-2.2A8 8 0 1 1 15.2 19l.4 2.2A10 10 0 0 0 12 2zm0 4a6 6 0 0 0-2.7 11.4l.4-2.3a3.7 3.7 0 1 1 4.6 0l.4 2.3A6 6 0 0 0 12 6zm0 4.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zm-1 4.6-.9 6.3c-.1.5.3.9.8.9h2.2c.5 0 .9-.4.8-.9l-.9-6.3h-2z"/></svg></a></div></div>
-<div><div class="sec-h"><h2>Questions</h2></div>
+<section class="scores" aria-labelledby="hs">
+<div class="wrap">
+<div class="board" id="board">
+<h2 id="hs">HIGH SCORES</h2>
+<p class="sub">Record numbers from our stories. Tap a row to watch the story behind it.</p>
+<ol id="scoreList"></ol>
+<p class="src">Every number is quoted from the sources listed in that video's description.</p>
+</div>
+</div>
+</section>
+
+<section id="shorts">
+<div class="wrap">
+<div class="head"><div><h2>Quick plays</h2><p>Under a minute each. Swipe, tap, watch.</p></div><a class="more" href="https://www.youtube.com/@gloryandglitch/shorts" target="_blank" rel="noopener">All Shorts on YouTube</a></div>
+<div class="reel" id="reel"></div>
+</div>
+</section>
+
+<section id="about">
+<div class="wrap rules">
+<div>
+<div class="head" style="margin-bottom:24px"><h2>House rules</h2></div>
+<dl>
+<div><dt>Sourced, not guessed</dt><dd>Every number and quote comes from published reporting, company figures or official records, listed in each video's description.</dd></div>
+<div><dt>Fast and clear</dt><dd>The rise, the turning point, the glitch. Real photos of the real hardware, our own charts, no filler.</dd></div>
+<div><dt>Honest about AI</dt><dd>Our narration uses an AI voice. Every script is written and fact-checked by us, and every video is labelled. <a href="/standards.html" style="color:var(--cyan)">Read our standards</a>.</dd></div>
+</dl>
+</div>
+<div class="moods" aria-label="Pixel's three moods">
+<figure><img src="/assets/rex-600.png" alt="Pixel, calm" width="150" height="150" loading="lazy"><figcaption>CALM</figcaption></figure>
+<figure><img src="/assets/rex-sly-600.png" alt="Pixel wearing a crown" width="150" height="150" loading="lazy"><figcaption>GLORY</figcaption></figure>
+<figure><img src="/assets/pixel-glitch-600.png" alt="Pixel split by a glitch" width="150" height="150" loading="lazy"><figcaption>GLITCH</figcaption></figure>
+</div>
+</div>
+</section>
+
+<section class="pause" id="newsletter" aria-labelledby="pz">
+<div class="wrap menu">
+<div><h2 id="pz" class="sr">Pause menu</h2>
+<ul class="tabs" role="tablist" aria-label="Pause menu">
+<li><button role="tab" aria-selected="true" aria-controls="p1" id="t1">SAVE GAME</button></li>
+<li><button role="tab" aria-selected="false" aria-controls="p2" id="t2" tabindex="-1">LISTEN</button></li>
+<li><button role="tab" aria-selected="false" aria-controls="p3" id="t3" tabindex="-1">BONUS LEVEL</button></li>
+</ul></div>
+<div>
+<div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+<h3>Save your progress</h3><p>One email when a new episode drops. No spam, unsubscribe anytime.</p>
+<form class="form" action="https://app.kit.com/forms/10124925/subscriptions" method="post"><label class="sr" for="email">Email address</label><input id="email" type="email" name="email_address" placeholder="Your email address" autocomplete="email" required><button class="btn" type="submit">Subscribe</button></form>
+</div>
+<div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+<h3>Listen on the go</h3><p>Every episode as audio, on Spotify and Apple Podcasts.</p>
+<div class="row-btns"><a class="btn" href="/podcast/">Open the podcast</a><a class="btn alt" href="https://open.spotify.com/show/5EtW21URHxPjKVuXmQ3ueC" target="_blank" rel="noopener">Spotify</a><a class="btn alt" href="https://podcasts.apple.com/podcast/id6829391324" target="_blank" rel="noopener">Apple Podcasts</a></div>
+</div>
+<div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+<h3>Business Empire Files</h3><p>Before we went all in on gaming, we told the stories of famous business collapses: Nokia, Kodak, Enron, Pan Am and more. They are all still here.</p>
+<a class="btn alt" href="/files/">Open the archive</a>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap duo">
+<div><h2>Follow along</h2><div class="soc"><a href="https://www.youtube.com/@gloryandglitch?sub_confirmation=1" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"/></svg></a><a href="https://www.instagram.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3 0-4.1.1C3.6 2.3 2.3 3.6 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.2 4.3 1.5 5.6 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c4.3-.2 5.6-1.5 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.2-4.3-1.5-5.6-5.8-5.8C15 2 14.7 2 12 2z"/></svg></a><a href="https://www.tiktok.com/@gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on TikTok" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.7a8 8 0 0 0 4.4 1.3V6.7A4.4 4.4 0 0 1 16.6 2z"/></svg></a><a href="https://www.facebook.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9H17l.5-4h-4V8.9c0-.6.3-.9.5-.9z"/></svg></a><a href="https://www.threads.com/@gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 22c-5.6 0-9.2-3.6-9.2-10S6.6 2 12.2 2c4.3 0 7.4 2.2 8.5 6l-2.5.7c-.8-2.8-3-4.3-6-4.3-4.1 0-6.6 2.8-6.6 7.6s2.5 7.6 6.6 7.6c3 0 5.4-1.6 5.4-4 0-1.4-.8-2.4-2.1-2.9-.3 2.6-1.9 4-4.4 4-2.3 0-3.9-1.3-3.9-3.3 0-2.2 1.9-3.5 4.7-3.5.6 0 1.1 0 1.6.1-.2-1.2-.9-1.8-2.1-1.8-.9 0-1.6.3-2.1.9L7.7 7.9c.9-1 2.2-1.6 3.8-1.6 2.5 0 4 1.5 4.3 4.2 2.4.8 3.9 2.6 3.9 5.1 0 3.8-3.4 6.4-7.5 6.4zm.1-8.4c-1.5 0-2.3.5-2.3 1.4 0 .8.7 1.3 1.7 1.3 1.4 0 2.2-.9 2.3-2.6-.5-.1-1.1-.1-1.7-.1z"/></svg></a><a href="https://bsky.app/profile/gloryandglitch.bsky.social" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Bluesky" title="Bluesky"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.6C7.9 5.6 10.8 9.7 12 12c1.2-2.3 4.1-6.4 6.8-8.4 2-1.4 5.2-2.5 5.2 1 0 .7-.4 5.9-.7 6.7-.9 3-4 3.8-6.7 3.3 4.8.8 6 3.5 3.4 6.2-5 5.1-7.1-1.3-7.7-2.9l-.3-.6-.3.6c-.6 1.6-2.7 8-7.7 2.9-2.6-2.7-1.4-5.4 3.4-6.2-2.7.5-5.8-.3-6.7-3.3C.4 10.5 0 5.3 0 4.6c0-3.5 3.2-2.4 5.2-1z"/></svg></a><a href="https://www.tumblr.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Tumblr" title="Tumblr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.6 22c-3.3 0-5.5-1.7-5.5-5.6V10H6.4V6.8c3-1 4.3-3.6 4.5-5.8h3.2v5.1h3.7V10h-3.7v5.9c0 1.6.8 2.1 2.1 2.1h1.9V22z"/></svg></a><a href="https://www.linkedin.com/company/gloryandglitch/" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a><a href="https://www.pinterest.com/gloryandglitch" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Pinterest" title="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.5 2.1-.8 3.3-.2 1 .5 1.8 1.5 1.8 1.8 0 3.1-1.9 3.1-4.6 0-2.4-1.7-4.1-4.2-4.1-2.9 0-4.6 2.2-4.6 4.4 0 .9.3 1.8.8 2.3.1.1.1.2.1.3l-.3 1.2c0 .2-.2.2-.4.1-1.3-.6-2.1-2.5-2.1-4 0-3.3 2.4-6.3 6.9-6.3 3.6 0 6.4 2.6 6.4 6 0 3.6-2.3 6.5-5.4 6.5-1.1 0-2.1-.6-2.4-1.2l-.7 2.5c-.2.9-.9 2.1-1.3 2.8A10 10 0 1 0 12 2z"/></svg></a><a href="https://open.spotify.com/show/5EtW21URHxPjKVuXmQ3ueC" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Spotify" title="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.6.6 0 0 1-.9.2c-2.4-1.5-5.4-1.8-9-1a.6.6 0 1 1-.3-1.2c3.9-.9 7.2-.5 9.9 1.1.3.2.4.6.3.9zm1.2-2.8a.8.8 0 0 1-1.1.3c-2.7-1.7-6.9-2.2-10.2-1.2a.8.8 0 1 1-.4-1.5c3.7-1.1 8.3-.6 11.4 1.3.4.2.5.7.3 1.1zm.1-2.9C14.7 8.8 9.3 8.6 6.2 9.6a.9.9 0 1 1-.5-1.8c3.6-1.1 9.5-.9 13.2 1.3a.9.9 0 0 1-1 1.6z"/></svg></a><a href="https://podcasts.apple.com/podcast/id6829391324" target="_blank" rel="noopener" aria-label="Glory &amp; Glitch on Apple Podcasts" title="Apple Podcasts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3l.4-2.2A8 8 0 1 1 15.2 19l.4 2.2A10 10 0 0 0 12 2zm0 4a6 6 0 0 0-2.7 11.4l.4-2.3a3.7 3.7 0 1 1 4.6 0l.4 2.3A6 6 0 0 0 12 6zm0 4.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zm-1 4.6-.9 6.3c-.1.5.3.9.8.9h2.2c.5 0 .9-.4.8-.9l-.9-6.3h-2z"/></svg></a></div></div>
+<div><h2>Questions</h2>
 <details><summary>Who makes Glory &amp; Glitch?</summary><p>An independent channel founded by M J. Research, scripts, graphics and editing are done in house. We used to be called Rise &amp; Ruin.</p></details>
 <details><summary>Is the narrator a real person?</summary><p>No. The narration uses an AI-generated voice. Everything it says is written and fact-checked by us, and we label it on every video.</p></details>
 <details><summary>Can I suggest a story?</summary><p>Yes, please. <a href="mailto:afsary.junaid@gmail.com?subject=Story%20suggestion%20for%20Glory%20%26%20Glitch">Email us</a> the game, studio or console and what you think happened.</p></details>
 <details><summary>Spotted a mistake?</summary><p><a href="mailto:afsary.junaid@gmail.com?subject=Correction%20request">Tell us</a>. We check every correction and fix the description or the video.</p></details>
 </div>
-</div></section>
+</div>
+</section>
 </main>
 
 <footer><div class="wrap">
 <div>&copy; 2026 Glory &amp; Glitch. Narration is AI-generated; research, scripts and graphics are original.</div>
-<nav><a href="/files/">Archive</a><a href="/podcast/">Podcast</a><a href="/standards.html">Standards</a><a href="/press.html">Press kit</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+<nav aria-label="Footer"><a href="/files/">Archive</a><a href="/podcast/">Podcast</a><a href="/standards.html">Standards</a><a href="/press.html">Press kit</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
 </div></footer>
+
+<dialog class="player" id="player" aria-label="Video player"><button class="x" type="button" id="closeP">CLOSE &times;</button><div class="fr" id="frame"></div></dialog>
+
+<script>
+(function(){
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const EPS = [
+ {id:'l73SnIlEcHY',n:21,s:'GTA 6',t:'GTA 6: The 13-Year, Billion-Dollar Bet',d:'Hacked, leaked and delayed twice. Thirteen years after GTA V, can GTA VI beat $1 billion in three days?',m:'4:15'},
+ {id:'qQ3GQlqQAMc',n:20,s:'XBOX',t:'The History of Xbox',d:'In January 2000, Microsoft pitched Nintendo a deal. Nintendo laughed. So Microsoft built the Xbox.',m:'5:35'},
+ {id:'0m3bngkHjUk',n:19,s:'DREAMCAST',t:'Why Did the Dreamcast Fail?',d:'Almost $98 million in a single day. Less than a year and a half later, Sega quit making consoles.',m:'5:55'},
+ {id:'_VbSVRiAzDk',n:15,s:'ATARI',t:'Why Did Atari Fail?',d:'In 1983, Atari buried unsold game cartridges in a New Mexico landfill. A year earlier it was bringing in about $2 billion a year.',m:'4:02'}
+];
+const SCORES = [
+ {tg:'GTA',sc:'90,421,491',w:'Views of the GTA 6 trailer in 24 hours',sm:'A Guinness World Record',id:'thTOUCB_LKQ',v:1},
+ {tg:'WII',sc:'101.63M',w:'Nintendo Wii consoles sold',sm:'Nearly five times the GameCube',id:'zJepn4i_B3Q',v:1},
+ {tg:'XBX',sc:'$1.15B',w:'What the Red Ring of Death cost Microsoft',sm:'Three red lights on the Xbox 360',id:'hYWr2lVDH-I',v:1},
+ {tg:'GTA',sc:'$1B',w:'GTA 5 sales in its first three days',sm:'September 2013',id:'p3IErvewL7s',v:1},
+ {tg:'ATR',sc:'728,000',w:'Atari cartridges buried in the desert',sm:'New Mexico, 1983',id:'V94c8mZYkC4',v:1},
+ {tg:'SEG',sc:'$97.9M',w:'Dreamcast sales in its first 24 hours',sm:'September 9, 1999',id:'0m3bngkHjUk',v:0},
+ {tg:'SEG',sc:'$70M',w:'Shenmue’s reported budget, at the top end',sm:'It sold over a million and still lost money',id:'NykduLsSqSA',v:1},
+ {tg:'PS3',sc:'$307',w:'Estimated loss on every PlayStation 3',sm:'iSuppli teardown, 2006',id:'MqylEXMbxZg',v:1},
+ {tg:'GTA',sc:'13 YRS',w:'The wait between GTA V and GTA VI',sm:'2013 to 2026',id:'l73SnIlEcHY',v:0}
+];
+const SHORTS = [
+ ['zJepn4i_B3Q','Wii at 20: 101 million by ignoring gamers'],
+ ['hsjRAMhQmIU','GTA 6 is out. Fans waited 13 years'],
+ ['thTOUCB_LKQ','GTA 6’s trailer leaked, so Rockstar released it early'],
+ ['KfdYTruNqww','GTA 5 came out three times first'],
+ ['hYWr2lVDH-I','The Red Ring of Death cost $1.15 billion'],
+ ['gxVRt90Fvxk','Microsoft tried to buy Nintendo'],
+ ['p3IErvewL7s','GTA 5 made $1 billion in 3 days'],
+ ['MqylEXMbxZg','The PS3 cost $599. Sony still lost money'],
+ ['NykduLsSqSA','Sega spent up to $70 million on one game'],
+ ['Qt5c36ANnx8','The console killed by a DVD player'],
+ ['q9ZuK7NfMes','$98 million in one day. Then Sega quit'],
+ ['V94c8mZYkC4','Atari buried 728,000 games in the desert'],
+ ['AChLth29acs','Atari said no, so they built Activision']
+];
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---- player ---- */
+const dlg = document.getElementById('player'), frame = document.getElementById('frame');
+function play(id, vertical){
+  frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" title="Glory &amp; Glitch video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  dlg.classList.toggle('vert', !!vertical);
+  if (dlg.showModal) dlg.showModal(); else window.open('https://youtu.be/'+id,'_blank');
+}
+function stop(){ frame.innerHTML=''; if (dlg.open) dlg.close(); }
+document.getElementById('closeP').onclick = stop;
+dlg.addEventListener('close', ()=>{frame.innerHTML='';});
+dlg.addEventListener('click', e=>{ if (e.target===dlg) stop(); });
+document.addEventListener('click', e=>{
+  const b = e.target.closest('[data-play]'); if (!b) return;
+  e.preventDefault(); play(b.dataset.play, b.dataset.vert==='1');
+});
+
+/* ---- level select ---- */
+const list = document.getElementById('lvlList');
+list.innerHTML = EPS.map((e,i)=>'<li><button class="lvl" role="option" type="button" id="lv'+i+'" aria-selected="'+(i?'false':'true')+'" data-i="'+i+'"><span class="n">EP '+e.n+'</span><span class="t">'+esc(e.t)+'</span><span class="d">'+e.m+'</span></button></li>').join('');
+const scrImg=document.getElementById('scrImg'), scrT=document.getElementById('scrT'), scrD=document.getElementById('scrD'), scrPlay=document.getElementById('scrPlay');
+let sel = 0;
+function choose(i, focus){
+  sel = (i+EPS.length)%EPS.length; const e = EPS[sel];
+  list.querySelectorAll('.lvl').forEach((b,k)=>b.setAttribute('aria-selected', k===sel?'true':'false'));
+  scrImg.style.opacity = .25;
+  const im = new Image(); im.onload = ()=>{ scrImg.src = im.src; scrImg.style.opacity = 1; };
+  im.onerror = ()=>{ scrImg.src = 'https://i.ytimg.com/vi/'+e.id+'/hqdefault.jpg'; scrImg.style.opacity = 1; };
+  im.src = 'https://i.ytimg.com/vi/'+e.id+'/maxresdefault.jpg';
+  scrT.textContent = e.t; scrD.textContent = e.d; scrPlay.dataset.play = e.id; scrPlay.setAttribute('aria-label','Play '+e.t);
+  if (focus) document.getElementById('lv'+sel).focus();
+}
+list.addEventListener('mouseover', e=>{ const b=e.target.closest('.lvl'); if (b) choose(+b.dataset.i); });
+list.addEventListener('click', e=>{ const b=e.target.closest('.lvl'); if (!b) return; const i=+b.dataset.i; if (i===sel && e.detail) play(EPS[i].id); else choose(i); });
+list.addEventListener('keydown', e=>{
+  if (e.key==='ArrowDown'){e.preventDefault();choose(sel+1,true)}
+  else if (e.key==='ArrowUp'){e.preventDefault();choose(sel-1,true)}
+  else if (e.key==='Enter'||e.key===' '){e.preventDefault();play(EPS[sel].id)}
+});
+
+/* ---- high scores ---- */
+const sl = document.getElementById('scoreList');
+sl.innerHTML = SCORES.map((s,i)=>{
+  const href = 'https://'+(s.v?'www.youtube.com/shorts/':'youtu.be/')+s.id;
+  return '<li><a class="row" href="'+href+'" data-play="'+s.id+'" data-vert="'+s.v+'"><span class="rk">'+String(i+1).padStart(2,'0')+'</span><span class="tg">'+s.tg+'</span><span class="wh">'+esc(s.w)+'<small>'+esc(s.sm)+'</small></span><span class="sc">'+s.sc+'</span></a></li>';
+}).join('');
+const board = document.getElementById('board');
+if (!RM && 'IntersectionObserver' in window){
+  board.classList.add('typing');
+  const rows = [...board.querySelectorAll('.row')];
+  const io = new IntersectionObserver(en=>{ if (en[0].isIntersecting){ io.disconnect(); rows.forEach((r,i)=>setTimeout(()=>r.classList.add('on'), 90*i)); } }, {threshold:.25});
+  io.observe(board);
+}
+
+/* ---- quick plays ---- */
+document.getElementById('reel').innerHTML = SHORTS.map(([id,t])=>'<button class="qp" type="button" data-play="'+id+'" data-vert="1" aria-label="Play Short: '+esc(t)+'"><img src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"></button>').join('');
+
+/* ---- pause menu tabs ---- */
+const tabs = [...document.querySelectorAll('[role=tab]')];
+function tab(i, focus){ tabs.forEach((t,k)=>{ const on=k===i; t.setAttribute('aria-selected',on); t.tabIndex=on?0:-1; document.getElementById(t.getAttribute('aria-controls')).hidden=!on; }); if (focus) tabs[i].focus(); }
+tabs.forEach((t,i)=>{ t.onclick=()=>tab(i); t.onkeydown=e=>{ if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();tab((i+1)%tabs.length,true)} if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();tab((i+tabs.length-1)%tabs.length,true)} }; });
+if (location.hash==='#newsletter') tab(0);
+
+/* ---- Pixel ---- */
+const stage = document.getElementById('pixel'), moods=['glory','broken','calm'], names={glory:'GLORY',broken:'GLITCH',calm:'CALM'};
+let mi = 0;
+document.getElementById('pixelBtn').onclick = ()=>{
+  mi=(mi+1)%moods.length; stage.classList.remove('glory','broken'); if (moods[mi]!=='calm') stage.classList.add(moods[mi]);
+  document.getElementById('moodTxt').textContent = names[moods[mi]];
+  if (!RM){ stage.classList.remove('jump'); void stage.offsetWidth; stage.classList.add('jump'); }
+  if (moods[mi]==='broken') glitch();
+};
+const eyes=[document.getElementById('eyeL'),document.getElementById('eyeR')], base=[72,114];
+if (!RM && matchMedia('(pointer:fine)').matches){
+  window.addEventListener('pointermove', e=>{
+    const r = stage.getBoundingClientRect(); if (!r.width) return;
+    const dx = Math.max(-1,Math.min(1,(e.clientX-(r.left+r.width/2))/(innerWidth/2)));
+    const dy = Math.max(-1,Math.min(1,(e.clientY-(r.top+r.height/2))/(innerHeight/2)));
+    eyes.forEach((el,k)=>{ el.setAttribute('x', base[k]+dx*8); el.setAttribute('y', 108+dy*6); });
+  }, {passive:true});
+}
+
+/* ---- wordmark glitch: once after boot, then rarely ---- */
+const mark = document.getElementById('mark');
+function glitch(){ if (RM) return; mark.classList.remove('glitch'); void mark.offsetWidth; mark.classList.add('glitch'); }
+
+/* ---- attract-mode mosaic: each episode thumbnail resolves from big pixels ---- */
+const cv = document.getElementById('mosaic'), cx = cv.getContext('2d');
+const nowEl=document.getElementById('now'), lvEl=document.getElementById('lv');
+const imgs = EPS.map(e=>{ const i=new Image(); i.crossOrigin='anonymous'; i.src='https://i.ytimg.com/vi/'+e.id+'/hqdefault.jpg'; return i; });
+const off = document.createElement('canvas'), ox = off.getContext('2d');
+let cur=0, t0=performance.now(), raf;
+function size(){ const r=cv.getBoundingClientRect(); cv.width=Math.max(320,Math.round(r.width/2)); cv.height=Math.max(200,Math.round(r.height/2)); }
+function draw(img, block){
+  const W=cv.width,H=cv.height; if (!img.complete||!img.naturalWidth) return;
+  const sc=Math.max(W/img.naturalWidth,H/(img.naturalHeight*.75)); const iw=img.naturalWidth*sc, ih=img.naturalHeight*sc;
+  const w=Math.max(1,Math.round(W/block)), h=Math.max(1,Math.round(H/block));
+  off.width=w; off.height=h; ox.imageSmoothingEnabled=true;
+  ox.drawImage(img,(W-iw)/2/block,(H-ih)/2/block,iw/block,ih/block);
+  cx.imageSmoothingEnabled=false; cx.clearRect(0,0,W,H); cx.drawImage(off,0,0,w,h,0,0,W,H);
+}
+const CYCLE=6500;
+function frameLoop(now){
+  const el=Math.max(0,now-t0), p=(el%CYCLE)/CYCLE, idx=Math.floor(el/CYCLE)%EPS.length;
+  if (idx!==cur){ cur=idx; nowEl.textContent=EPS[cur].s; lvEl.textContent=EPS[cur].n; }
+  let block; if (p<.35) block=48*(1-p/.35)+4; else if (p<.82) block=4; else block=4+44*((p-.82)/.18);
+  draw(imgs[cur], Math.max(4,Math.round(block)));
+  raf=requestAnimationFrame(frameLoop);
+}
+size(); addEventListener('resize', size);
+if (RM){ imgs[0].onload=()=>draw(imgs[0],6); }
+else {
+  const vis = new IntersectionObserver(en=>{ if (en[0].isIntersecting){ t0=performance.now()-CYCLE*cur; raf=requestAnimationFrame(frameLoop);} else cancelAnimationFrame(raf); });
+  vis.observe(cv);
+}
+
+/* ---- boot ---- */
+requestAnimationFrame(()=>{ document.body.classList.remove('boot'); document.body.classList.add('booted');
+  if (!RM){ setTimeout(glitch, 1100); setInterval(()=>{ if (!document.hidden) glitch(); }, 9000); } });
+})();
+</script>
 </body>
 </html>
