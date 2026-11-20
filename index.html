@@ -278,7 +278,17 @@ dialog.player::backdrop{background:rgba(5,4,8,.88);backdrop-filter:blur(4px)}
   .boot .mark,.boot .hud,.boot .tag,.boot .start,.boot .pixel-stage{opacity:1}
   .typing .row{opacity:1}
   html{scroll-behavior:auto}
+  /* Pixel's tap feedback still plays: short, user-triggered, no flashing or shaking */
+  .pixel-stage.in-glory .crown{animation:crownDrop .75s cubic-bezier(.3,1.6,.5,1)!important}
+  .pixel-stage.in-glory .eyes-happy{animation:pop .4s .15s cubic-bezier(.3,1.8,.5,1) both!important}
+  .pixel-stage .spark{animation:spark .8s cubic-bezier(.2,.8,.3,1) forwards!important}
+  .pixel-stage.in-broken .split{animation:slice .35s steps(4)!important}
+  .pixel-stage.in-broken .face-top{animation:slideT .3s steps(3)!important}
+  .pixel-stage.in-broken .face-bot{animation:slideB .3s steps(3)!important}
+  .pixel-stage.in-calm .eyes-sq{animation:blink .4s!important}
 }
+@keyframes slideT{from{transform:none}to{transform:translateX(-10px)}}
+@keyframes slideB{from{transform:none}to{transform:translateX(12px)}}
 </style>
 </head>
 <body class="boot">
@@ -533,12 +543,11 @@ document.getElementById('pixelBtn').onclick = ()=>{
   mi=(mi+1)%moods.length; const m=moods[mi];
   stage.classList.remove('glory','broken','calm','in-glory','in-broken','in-calm'); stage.classList.add(m);
   document.getElementById('moodTxt').textContent = names[m];
-  if (RM) return;
   void stage.offsetWidth; stage.classList.add('in-'+m);
   clearTimeout(enterT); enterT=setTimeout(()=>stage.classList.remove('in-'+m), 900);
   if (m==='glory') sparks();
   if (m==='broken') glitch();
-  if (m==='calm'){ stage.classList.remove('jump'); void stage.offsetWidth; stage.classList.add('jump'); }
+  if (m==='calm' && !RM){ stage.classList.remove('jump'); void stage.offsetWidth; stage.classList.add('jump'); }
 };
 const eyesG=document.getElementById('eyes');
 if (!RM && matchMedia('(pointer:fine)').matches){
