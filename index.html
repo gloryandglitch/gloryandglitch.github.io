@@ -58,6 +58,8 @@ body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;back
 .hero .wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;width:100%;padding-top:56px;padding-bottom:64px}
 .hud{display:flex;gap:28px;font:400 13px var(--px);color:var(--muted);margin-bottom:26px;flex-wrap:wrap}
 .hud span b{color:var(--gold);font-weight:400}
+.hud .next{color:var(--text)}.hud .next b{color:var(--cyan)}.hud .next .cd{color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hud .next.open .cd{color:var(--mag)}
 .mark{font:400 clamp(58px,11.5vw,150px)/.86 var(--disp);margin:0;position:relative;display:inline-block}
 .mark .l1{display:block;color:var(--gold)}
 .mark .l2{display:block;color:var(--text);position:relative}
@@ -302,7 +304,7 @@ dialog.player::backdrop{background:rgba(5,4,8,.88);backdrop-filter:blur(4px)}
 <canvas id="mosaic" aria-hidden="true"></canvas>
 <div class="wrap">
 <div>
-<div class="hud" aria-hidden="true"><span>NOW SHOWING <b id="now">GTA 6</b></span><span>LEVEL <b id="lv">21</b></span></div>
+<div class="hud"><span aria-hidden="true">NOW SHOWING <b id="now">GTA 6</b></span><span aria-hidden="true">LEVEL <b id="lv">21</b></span><span class="next" id="nextWrap" hidden>NEXT LEVEL <b id="nextLv"></b> UNLOCKS IN <b class="cd" id="cd">--</b></span></div>
 <h1 class="mark" id="mark"><span class="l1">GLORY</span><span class="l2" data-t="&amp; GLITCH">&amp; GLITCH</span></h1>
 <p class="tag"><strong>True stories of how gaming empires rise, fall and glitch.</strong> The consoles, studios and games that made or broke them, with the real numbers and the sources.</p>
 <div class="start">
@@ -467,6 +469,9 @@ const SHORTS = [
  ['V94c8mZYkC4','Atari buried 728,000 games in the desert'],
  ['AChLth29acs','Atari said no, so they built Activision']
 ];
+/* NEXT: the next scheduled long episode, written by Tools site_sync from YouTube. null = none scheduled (timer hidden).
+   t is only filled within 7 days of release; until then the level shows as ???. */
+const NEXT = null;
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* ---- player ---- */
@@ -592,6 +597,27 @@ else {
   const vis = new IntersectionObserver(en=>{ if (en[0].isIntersecting){ t0=performance.now()-CYCLE*cur; raf=requestAnimationFrame(frameLoop);} else cancelAnimationFrame(raf); });
   vis.observe(cv);
 }
+
+/* ---- next-level countdown ---- */
+(function(){
+  if (!NEXT || !NEXT.at) return;
+  const wrap=document.getElementById('nextWrap'), cd=document.getElementById('cd'), lvn=document.getElementById('nextLv');
+  const at=Date.parse(NEXT.at); if (isNaN(at)) return;
+  const p2=x=>String(x).padStart(2,'0');
+  function tick(){
+    const ms=at-Date.now();
+    if (ms<=-6*3600e3){ wrap.hidden=true; return; }            // a few hours after release the normal level list takes over
+    wrap.hidden=false;
+    const soon = ms<=7*864e5 && NEXT.t;
+    lvn.textContent = NEXT.n + ': ' + (soon ? NEXT.t.toUpperCase() : '???');
+    if (ms<=0){ wrap.classList.add('open'); wrap.firstChild.nodeValue='LEVEL '; cd.textContent='UNLOCKED'; wrap.childNodes[2].nodeValue=' IS '; 
+      document.querySelectorAll('.press').forEach(b=>b.dataset.play=NEXT.id); return; }
+    const s=Math.floor(ms/1000), d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60;
+    cd.textContent = (d? p2(d)+'D ':'') + p2(h)+':'+p2(m)+':'+p2(sec);
+    cd.setAttribute('aria-label', d+' days '+h+' hours '+m+' minutes');
+  }
+  tick(); setInterval(tick,1000);
+})();
 
 /* ---- boot ---- */
 requestAnimationFrame(()=>{ document.body.classList.remove('boot'); document.body.classList.add('booted');
