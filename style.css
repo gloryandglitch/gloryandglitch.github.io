@@ -1,8 +1,20 @@
-:root{--ink:#0B0A10;--cream:#F6EEDE;--gold:#F2B630;--red:#CE2626}
-*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--cream);font:17px/1.6 Georgia,serif}
-header{padding:28px 20px;border-bottom:2px solid var(--gold);text-align:center}
-header a{color:var(--gold);text-decoration:none;font:700 30px/1 Impact,'Russo One',sans-serif;letter-spacing:1px}
-nav{margin-top:10px}nav a{color:var(--cream);margin:0 10px;font:15px sans-serif}
-main{max-width:760px;margin:0 auto;padding:28px 20px 60px}h1,h2{font-family:Impact,'Russo One',sans-serif;letter-spacing:.5px;color:var(--gold)}
-a{color:var(--gold)}.btn{display:inline-block;background:var(--red);color:#fff;padding:12px 22px;border-radius:6px;text-decoration:none;font:700 16px sans-serif}
-footer{text-align:center;font:13px sans-serif;opacity:.7;padding:20px}
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@400;500;600;700&family=Silkscreen&display=swap');
+/* Glory & Glitch arcade skin for the simple legal/tool pages (Nov 20, 2026) */
+:root{--ink:#0B0A10;--panel:#13111B;--line:#2A2638;--text:#EDEAF2;--muted:#A9A3B8;--gold:#F2B630;--cyan:#00E5FF;--mag:#FF2E88}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font:17px/1.7 'Chakra Petch',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1180px;margin:0 auto;padding:16px 20px;border-bottom:1px solid var(--line);background:rgba(11,10,16,.9)}
+header>a{color:var(--gold);text-decoration:none;font:400 20px/1 'Russo One',sans-serif;letter-spacing:.2px}
+header nav{display:flex;gap:20px;margin:0}
+header nav a{color:var(--muted);text-decoration:none;font:600 15px 'Chakra Petch',sans-serif;margin:0}
+header nav a:hover{color:var(--text)}
+main{max-width:760px;margin:0 auto;padding:40px 20px 64px}
+h1{font:400 clamp(32px,5vw,46px)/1.08 'Russo One',sans-serif;color:var(--text);margin:0 0 18px}
+h2{font:400 24px/1.2 'Russo One',sans-serif;color:var(--text);margin:34px 0 10px}
+p,li{color:#d9d4e3}em{color:var(--muted)}
+a{color:var(--cyan)}
+code,small{color:var(--muted)}
+.btn,#connect{display:inline-block;background:var(--gold)!important;color:var(--ink)!important;padding:12px 22px;border-radius:8px!important;text-decoration:none;font:700 16px 'Chakra Petch',sans-serif!important}
+footer{text-align:center;font:400 12px 'Silkscreen',monospace;color:var(--muted);padding:24px;border-top:1px solid var(--line)}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}

@@ -1,10 +1,25 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>File not found | Glory &amp; Glitch</title><meta name="robots" content="noindex"><link rel="icon" type="image/png" href="/assets/crown.png">
-<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@500;700&family=Special+Elite&display=swap" rel="stylesheet">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0B0A10;color:#F6EEDE;font:17px/1.6 Georgia,serif;text-align:center;padding:24px}
-.tag{font-family:"Special Elite",monospace;color:#F2B630;letter-spacing:2px}h1{font:400 64px/1 'Russo One',sans-serif;margin:12px 0;color:#F2B630}
-.stamp{display:inline-block;border:4px solid #CE2626;color:#CE2626;font:400 28px/1 'Russo One',sans-serif;padding:8px 18px;transform:rotate(-6deg);margin:10px 0 18px}
-a{color:#0B0A10;background:#F2B630;padding:12px 22px;border-radius:999px;text-decoration:none;font:700 15px sans-serif}img{width:110px}</style></head>
-<body><main><img src="/assets/crown.png" alt=""><div class="tag">ERROR 404</div><h1>This page fell.</h1><div class="stamp">FILE NOT FOUND</div>
-<p>Even empires lose a page sometimes.</p><p><a href="/">Back to Glory &amp; Glitch</a></p></main><!-- Cloudflare Web Analytics (cookie-free) --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ddb397b8679e4fa0b17dead68ada088c"}'></script>
-</body></html>
+<title>Page not found | Glory &amp; Glitch</title><meta name="robots" content="noindex"><link rel="icon" type="image/png" href="/assets/crown.png">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0B0A10;color:#EDEAF2;font:17px/1.6 'Chakra Petch',sans-serif;text-align:center;padding:24px}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.03) 0 1px,transparent 1px 3px)}
+img{width:140px;margin:0 auto 10px}
+.go{font:400 clamp(40px,10vw,84px)/1 'Silkscreen',monospace;color:#F2B630;margin:8px 0 6px;text-shadow:-3px 0 #00E5FF,3px 0 #FF2E88}
+h1{font:400 clamp(22px,4vw,30px) 'Russo One',sans-serif;margin:0 0 8px}
+p{color:#A9A3B8;margin:0 0 26px}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+a{font:400 15px 'Silkscreen',monospace;text-decoration:none;padding:13px 20px;border-radius:6px}
+a.y{background:#F2B630;color:#0B0A10}a.y:hover{background:#ffc94d}
+a.n{color:#EDEAF2;box-shadow:inset 0 0 0 1px #2A2638}a.n:hover{box-shadow:inset 0 0 0 1px #00E5FF;color:#00E5FF}
+.blink{animation:b 1.1s steps(1) infinite}@keyframes b{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.blink{animation:none}}
+:focus-visible{outline:3px solid #00E5FF;outline-offset:3px}
+</style></head>
+<body><main>
+<img src="/assets/pixel-glitch-600.png" alt="Pixel, split by a glitch" width="140" height="140">
+<div class="go">GAME OVER</div>
+<h1>This page glitched.</h1>
+<p>The link is broken or the page has moved. Continue?</p>
+<div class="row"><a class="y" href="/"><span class="blink" aria-hidden="true">&#9654;</span> CONTINUE</a><a class="n" href="/#episodes">CHOOSE A LEVEL</a></div>
+</main></body></html>
